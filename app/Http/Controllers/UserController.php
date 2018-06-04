@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $us  = User::all();
-        return View('user.index', compact('us'));
+        return view('user.index', compact('us'));
     }
 
     /**
@@ -37,7 +38,7 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:255',
-            'email' => 'required|max:255|unique',
+            'email' => 'required|max:255|unique:users',
             'password' => 'required|min:5'
         ]);
 
@@ -46,7 +47,7 @@ class UserController extends Controller
         $us->email = $request->email;
         $us->password = $request->password;
         $us->save();
-        return redirect()->route('us.index');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -91,11 +92,7 @@ class UserController extends Controller
         $us->name = $request->name;
         $us->email = $request->email;
         $us->password = $request->password;
-        $us->save();
-        Session::flash("flash_notification", [
-        "level"=>"success",
-        "message"=>"Berhasil mengedit <b>$us->name</b>"
-        ]);
+        
         return redirect()->route('user.index');
     }
 
@@ -109,7 +106,7 @@ class UserController extends Controller
     {
         $us = User::findOrFail($id);
         $us->delete();
-        Session::flash("flash_notification", [
+        session::flash("flash_notification", [
         "level"=>"success",
         "message"=>"Data Berhasil dihapus"
         ]);

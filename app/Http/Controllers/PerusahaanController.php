@@ -14,7 +14,7 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        $per = Perusahaan::with('Member')->get();
+        $per = Perusahaan::with('member')->get();
         return view('perusahaan.index',compact('per'));
     }
 

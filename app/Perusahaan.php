@@ -13,6 +13,6 @@ class Perusahaan extends Model
         return $this->belongsto('App\User','user_id');
     }
     public function Lowongan(){
-        return $this->HasOne('App\Lowongan','pers_id');
+        return $this->HasMany('App\Lowongan','pers_id');
     }
 }

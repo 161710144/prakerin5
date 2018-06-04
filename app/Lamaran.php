@@ -13,6 +13,6 @@ class Lamaran extends Model
         return $this->belongsto('App\Lowongan','low_id');
     }
     public function User(){
-        return $this->belongstoMany('App\User','user_id');
+        return $this->belongsto('App\User','user_id');
     }
 }

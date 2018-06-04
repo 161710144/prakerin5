@@ -21,3 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('user','UserController');
 Route::resource('member','MemberController');
+
+Route::get('/cekuk', function () {
+    return view('layouts.admin');
+});

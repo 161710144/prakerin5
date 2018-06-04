@@ -22,10 +22,10 @@ class User extends Authenticatable
         return $this->HasOne('App\Member','user_id');
     }
     public function Perusahaan(){
-        return $this->HasOne('App\Perusahaan','user_id');
+        return $this->HasMany('App\Perusahaan','user_id');
     }
     public function Lamaran(){
-        return $this->HasOne('App\Lamaran','user_id');
+        return $this->HasMany('App\Lamaran','user_id');
     }
 
     /**
